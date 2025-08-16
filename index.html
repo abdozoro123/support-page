@@ -2,135 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Support Me</title>
+  <title>Support My Gaming PC Dream</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #333;
-    }
-    .card {
-      background: #fff;
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
       text-align: center;
-      max-width: 500px;
-      width: 90%;
+      padding: 60px 20px;
     }
-    .card h1 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: #222;
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
     }
-    .card p {
+    p {
+      font-size: 1.2em;
+      margin-bottom: 40px;
+    }
+    .donate-btn {
+      display: inline-block;
+      background: #0070ba;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
       font-size: 18px;
-      margin-bottom: 25px;
-      color: #555;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .donate-btn:hover {
+      background: #005c99;
     }
     select {
-      margin-bottom: 20px;
-      padding: 8px 12px;
-      font-size: 14px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      cursor: pointer;
-      max-width: 90%;
-    }
-    .paypal-button {
+      margin-top: 30px;
+      padding: 10px;
+      border-radius: 6px;
       border: none;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    .paypal-button:hover {
-      transform: scale(1.05);
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <select id="lang" onchange="changeLang()"></select>
+  <h1 id="message">Can you help me get a Gaming PC?</h1>
+  <p id="sub">Your support means the world to me 💙</p>
 
-    <h1 id="title">Can you help me buy a gaming computer 🎮</h1>
-    <p id="desc">You can support me via PayPal by clicking the button below:</p>
+  <!-- زر التبرع -->
+  <a href="https://www.paypal.com/paypalme/donetplease" target="_blank" class="donate-btn">
+    💙 Donate via PayPal
+  </a>
 
-    <!-- PayPal Donate Button -->
-    <form action="https://www.paypal.com/donate" method="post" target="_top">
-      <input type="hidden" name="business" value="YourEmail@paypal.com" />
-      <input type="hidden" name="cmd" value="_donations" />
-      <input type="hidden" name="currency_code" value="USD" />
-      <input type="hidden" name="item_name" value="Help to buy a gaming computer" />
-      <input type="image"
-             src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
-             name="submit"
-             title="Donate with PayPal"
-             alt="Donate with PayPal button"
-             class="paypal-button" />
-    </form>
+  <!-- اختيار اللغة -->
+  <div>
+    <select id="language" onchange="translateMessage()">
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+      <option value="fr">Français</option>
+      <option value="es">Español</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+      <option value="pt">Português</option>
+      <option value="ru">Русский</option>
+      <option value="zh">中文</option>
+      <option value="ja">日本語</option>
+      <option value="ko">한국어</option>
+      <option value="tr">Türkçe</option>
+    </select>
   </div>
 
   <script>
-    // قائمة بكل اللغات المدعومة من Google Translate (بدون العبرية)
-    const languages = {
-      "af": "Afrikaans","sq": "Albanian","am": "Amharic","ar": "Arabic","hy": "Armenian",
-      "az": "Azerbaijani","eu": "Basque","be": "Belarusian","bn": "Bengali","bs": "Bosnian",
-      "bg": "Bulgarian","ca": "Catalan","ceb": "Cebuano","ny": "Chichewa","zh-CN": "Chinese (Simplified)",
-      "zh-TW": "Chinese (Traditional)","co": "Corsican","hr": "Croatian","cs": "Czech","da": "Danish",
-      "nl": "Dutch","en": "English","eo": "Esperanto","et": "Estonian","tl": "Filipino","fi": "Finnish",
-      "fr": "French","fy": "Frisian","gl": "Galician","ka": "Georgian","de": "German","el": "Greek",
-      "gu": "Gujarati","ht": "Haitian Creole","ha": "Hausa","haw": "Hawaiian","iw": "Hebrew (Blocked)",
-      "hi": "Hindi","hmn": "Hmong","hu": "Hungarian","is": "Icelandic","ig": "Igbo","id": "Indonesian",
-      "ga": "Irish","it": "Italian","ja": "Japanese","jw": "Javanese","kn": "Kannada","kk": "Kazakh",
-      "km": "Khmer","ko": "Korean","ku": "Kurdish (Kurmanji)","ky": "Kyrgyz","lo": "Lao","la": "Latin",
-      "lv": "Latvian","lt": "Lithuanian","lb": "Luxembourgish","mk": "Macedonian","mg": "Malagasy",
-      "ms": "Malay","ml": "Malayalam","mt": "Maltese","mi": "Maori","mr": "Marathi","mn": "Mongolian",
-      "my": "Myanmar (Burmese)","ne": "Nepali","no": "Norwegian","ps": "Pashto","fa": "Persian",
-      "pl": "Polish","pt": "Portuguese","pa": "Punjabi","ro": "Romanian","ru": "Russian","sm": "Samoan",
-      "gd": "Scots Gaelic","sr": "Serbian","st": "Sesotho","sn": "Shona","sd": "Sindhi","si": "Sinhala",
-      "sk": "Slovak","sl": "Slovenian","so": "Somali","es": "Spanish","su": "Sundanese","sw": "Swahili",
-      "sv": "Swedish","tg": "Tajik","ta": "Tamil","te": "Telugu","th": "Thai","tr": "Turkish","uk": "Ukrainian",
-      "ur": "Urdu","uz": "Uzbek","vi": "Vietnamese","cy": "Welsh","xh": "Xhosa","yi": "Yiddish","yo": "Yoruba","zu": "Zulu"
-    };
+    function translateMessage() {
+      const lang = document.getElementById("language").value;
+      const message = document.getElementById("message");
+      const sub = document.getElementById("sub");
 
-    // ملء القائمة باستثناء العبرية
-    const langSelect = document.getElementById("lang");
-    for (const [code, name] of Object.entries(languages)) {
-      if (code === "iw" || code === "he") continue; // منع العبرية
-      const option = document.createElement("option");
-      option.value = code;
-      option.textContent = name;
-      if (code === "en") option.selected = true;
-      langSelect.appendChild(option);
-    }
+      const translations = {
+        en: ["Can you help me get a Gaming PC?", "Your support means the world to me 💙"],
+        ar: ["هل يمكنكم مساعدتي في شراء حاسوب ألعاب؟", "دعمكم يعني لي الكثير 💙"],
+        fr: ["Pouvez-vous m'aider à obtenir un PC gamer ?", "Votre soutien signifie beaucoup pour moi 💙"],
+        es: ["¿Puedes ayudarme a conseguir un PC gamer?", "Tu apoyo significa mucho para mí 💙"],
+        de: ["Kannst du mir helfen, einen Gaming-PC zu bekommen?", "Deine Unterstützung bedeutet mir viel 💙"],
+        it: ["Puoi aiutarmi a ottenere un PC da gaming?", "Il tuo supporto significa molto per me 💙"],
+        pt: ["Você pode me ajudar a conseguir um PC gamer?", "Seu apoio significa muito para mim 💙"],
+        ru: ["Вы можете помочь мне получить игровой ПК?", "Ваша поддержка много значит для меня 💙"],
+        zh: ["你能帮我得到一台游戏电脑吗？", "你的支持对我来说意义重大 💙"],
+        ja: ["ゲーミングPCを手に入れるのを手伝ってくれませんか？", "あなたのサポートは私にとって大きな意味があります 💙"],
+        ko: ["게임용 PC를 얻을 수 있도록 도와주실 수 있나요?", "당신의 지원은 저에게 큰 의미가 있습니다 💙"],
+        tr: ["Bir oyun bilgisayarı almama yardım eder misin?", "Desteğiniz benim için çok şey ifade ediyor 💙"]
+      };
 
-    const originalTexts = {
-      title: "Can you help me buy a gaming computer 🎮",
-      desc: "You can support me via PayPal by clicking the button below:"
-    };
-
-    async function translateText(text, targetLang) {
-      const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      return data[0][0][0];
-    }
-
-    async function changeLang() {
-      const lang = langSelect.value;
-      if (lang === "iw" || lang === "he") {
-        alert("هذه اللغة غير مدعومة.");
-        return;
-      }
-      const title = await translateText(originalTexts.title, lang);
-      const desc = await translateText(originalTexts.desc, lang);
-      document.getElementById("title").innerText = title;
-      document.getElementById("desc").innerText = desc;
+      message.textContent = translations[lang][0];
+      sub.textContent = translations[lang][1];
     }
   </script>
 </body>
