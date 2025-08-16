@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Support My Gaming PC Dream</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.2em;
+      margin-bottom: 40px;
+    }
+    .donate-btn {
+      display: inline-block;
+      background: #0070ba;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .donate-btn:hover {
+      background: #005c99;
+    }
+    select {
+      margin-top: 30px;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="message">Can you help me get a Gaming PC?</h1>
+  <p id="sub">Your support means the world to me 💙</p>
+
+  <!-- زر التبرع -->
+  <a href="https://www.paypal.com/paypalme/donetplease" target="_blank" class="donate-btn">
+    💙 Donate via PayPal
+  </a>
+
+  <!-- اختيار اللغة -->
+  <div>
+    <select id="language" onchange="translateMessage()">
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+      <option value="fr">Français</option>
+      <option value="es">Español</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+      <option value="pt">Português</option>
+      <option value="ru">Русский</option>
+      <option value="zh">中文</option>
+      <option value="ja">日本語</option>
+      <option value="ko">한국어</option>
+      <option value="tr">Türkçe</option>
+    </select>
+  </div>
+
+  <script>
+    function translateMessage() {
+      const lang = document.getElementById("language").value;
+      const message = document.getElementById("message");
+      const sub = document.getElementById("sub");
+
+      const translations = {
+        en: ["Can you help me get a Gaming PC?", "Your support means the world to me 💙"],
+        ar: ["هل يمكنكم مساعدتي في شراء حاسوب ألعاب؟", "دعمكم يعني لي الكثير 💙"],
+        fr: ["Pouvez-vous m'aider à obtenir un PC gamer ?", "Votre soutien signifie beaucoup pour moi 💙"],
+        es: ["¿Puedes ayudarme a conseguir un PC gamer?", "Tu apoyo significa mucho para mí 💙"],
+        de: ["Kannst du mir helfen, einen Gaming-PC zu bekommen?", "Deine Unterstützung bedeutet mir viel 💙"],
+        it: ["Puoi aiutarmi a ottenere un PC da gaming?", "Il tuo supporto significa molto per me 💙"],
+        pt: ["Você pode me ajudar a conseguir um PC gamer?", "Seu apoio significa muito para mim 💙"],
+        ru: ["Вы можете помочь мне получить игровой ПК?", "Ваша поддержка много значит для меня 💙"],
+        zh: ["你能帮我得到一台游戏电脑吗？", "你的支持对我来说意义重大 💙"],
+        ja: ["ゲーミングPCを手に入れるのを手伝ってくれませんか？", "あなたのサポートは私にとって大きな意味があります 💙"],
+        ko: ["게임용 PC를 얻을 수 있도록 도와주실 수 있나요?", "당신의 지원은 저에게 큰 의미가 있습니다 💙"],
+        tr: ["Bir oyun bilgisayarı almama yardım eder misin?", "Desteğiniz benim için çok şey ifade ediyor 💙"]
+      };
+
+      message.textContent = translations[lang][0];
+      sub.textContent = translations[lang][1];
+    }
+  </script>
+</body>
+</html>
